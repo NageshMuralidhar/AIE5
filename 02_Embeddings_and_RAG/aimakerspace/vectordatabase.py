@@ -12,6 +12,112 @@ def cosine_similarity(vector_a: np.array, vector_b: np.array) -> float:
     norm_b = np.linalg.norm(vector_b)
     return dot_product / (norm_a * norm_b)
 
+# Implementing euclidean distance, manhattan distance, chebyshev distance, and jaccard similarity
+# For my assignment, I will be using jaccard similarity
+'''
+The "better" metric depends entirely on the context of your problem, the type of data you are working with, and the specific requirements of your analysis or algorithm. Here's a comparison of the four methods:
+
+---
+
+### 1. **Euclidean Distance**
+- **Formula**: \( \sqrt{\sum_{i=1}^n (x_i - y_i)^2} \)
+- **Properties**:
+  - Measures straight-line ("as-the-crow-flies") distance.
+  - Works well for continuous, numeric data.
+- **Strengths**:
+  - Intuitive and widely used in geometric and clustering tasks (e.g., k-means).
+  - Sensitive to the magnitude of differences.
+- **Limitations**:
+  - Sensitive to scale—features with larger ranges dominate the distance.
+  - Assumes all dimensions are equally important.
+- **Best for**:
+  - Continuous numeric data where the magnitude of differences matters.
+
+---
+
+### 2. **Manhattan Distance (City Block Distance)**
+- **Formula**: \( \sum_{i=1}^n |x_i - y_i| \)
+- **Properties**:
+  - Measures distance along axes at right angles (like navigating a grid).
+  - More robust to outliers than Euclidean distance.
+- **Strengths**:
+  - Works well for data with high-dimensional or sparse features.
+  - Less sensitive to large outliers compared to Euclidean.
+- **Limitations**:
+  - May not align well with natural distances in some geometries.
+- **Best for**:
+  - Data with high dimensionality or a grid-like structure (e.g., urban planning, taxi routes).
+
+---
+
+### 3. **Chebyshev Distance**
+- **Formula**: \( \max(|x_i - y_i|) \)
+- **Properties**:
+  - Measures the greatest single-axis difference between two points.
+  - Useful in environments where movement is restricted to one axis at a time.
+- **Strengths**:
+  - Captures the maximum variation in any one dimension.
+  - Intuitive for some grid-based or discrete data scenarios.
+- **Limitations**:
+  - Ignores variations in other dimensions beyond the maximum.
+- **Best for**:
+  - Scenarios with uniform costs across axes or where maximum deviations matter (e.g., chessboard distances).
+
+---
+
+### 4. **Jaccard Similarity**
+- **Formula**: \( \frac{|A \cap B|}{|A \cup B|} \)
+- **Properties**:
+  - Measures the similarity between two sets.
+  - Specifically designed for binary or categorical data.
+- **Strengths**:
+  - Works well with binary or set data.
+  - Focuses on the proportion of shared elements over total elements.
+- **Limitations**:
+  - Cannot measure differences in magnitude.
+  - Sensitive to the sparsity of data.
+- **Best for**:
+  - Comparing sets, binary vectors, or categorical data (e.g., text/document similarity).
+
+---
+
+### Key Considerations
+- **Data Type**:
+  - Continuous: Euclidean or Manhattan.
+  - Binary/Categorical: Jaccard.
+  - Discrete/Grid: Chebyshev.
+- **Scale Sensitivity**:
+  - Normalize data if using Euclidean or Manhattan to avoid bias.
+- **Dimensionality**:
+  - High-dimensional data often benefits from Manhattan or Jaccard due to reduced sensitivity to the curse of dimensionality.
+
+---
+
+In summary:
+- Use **Euclidean Distance** for continuous numeric data and clustering if magnitude matters.
+- Use **Manhattan Distance** for sparse or high-dimensional data.
+- Use **Chebyshev Distance** for maximum deviation-based scenarios (e.g., grids).
+- Use **Jaccard Similarity** for comparing sets, binary features, or categorical data.
+'''
+
+
+def euclidean_distance(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Euclidean distance between two vectors."""
+    return np.linalg.norm(vector_a - vector_b)
+
+def manhattan_distance(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Manhattan distance between two vectors."""
+    return np.sum(np.abs(vector_a - vector_b))
+
+def chebyshev_distance(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Chebyshev distance between two vectors."""
+    return np.max(np.abs(vector_a - vector_b))
+
+def jaccard_similarity(vector_a: np.array, vector_b: np.array) -> float:
+    """Computes the Jaccard similarity between two vectors."""
+    intersection = np.sum(np.logical_and(vector_a, vector_b))
+    union = np.sum(np.logical_or(vector_a, vector_b))
+    return intersection / union
 
 class VectorDatabase:
     def __init__(self, embedding_model: EmbeddingModel = None):
@@ -25,7 +131,7 @@ class VectorDatabase:
         self,
         query_vector: np.array,
         k: int,
-        distance_measure: Callable = cosine_similarity,
+        distance_measure: Callable = jaccard_similarity,
     ) -> List[Tuple[str, float]]:
         scores = [
             (key, distance_measure(query_vector, vector))
@@ -37,7 +143,7 @@ class VectorDatabase:
         self,
         query_text: str,
         k: int,
-        distance_measure: Callable = cosine_similarity,
+        distance_measure: Callable = jaccard_similarity,
         return_as_text: bool = False,
     ) -> List[Tuple[str, float]]:
         query_vector = self.embedding_model.get_embedding(query_text)
