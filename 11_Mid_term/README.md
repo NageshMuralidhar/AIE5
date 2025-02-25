@@ -127,7 +127,7 @@ Link: https://huggingface.co/spaces/dataera2013/midterm
 
 ## Task 6: Fine-Tuning Open-Source Embeddings
 
-Link: https://huggingface.co/dataera2013/midterm-small-model-3
+Link: https://huggingface.co/dataera2013/mt-1
 
 # Task 7: Assessing Performance
 
