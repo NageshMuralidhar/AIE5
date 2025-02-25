@@ -18,7 +18,6 @@ from langchain_openai.chat_models import ChatOpenAI
 from operator import itemgetter
 from langchain.schema.output_parser import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough
-from sentence_transformers import SentenceTransformer
 
 # Load environment variables
 load_dotenv()
@@ -363,9 +362,7 @@ async def podcast_chat(podcast_id: str, request: PodcastChatRequest):
         chunks = text_splitter.split_text(podcast_transcript)
         
         # Initialize embedding model
-        # embedding_model = OpenAIEmbeddings(model="text-embedding-3-small")
-        # Use fine tuned model
-        embedding_model = SentenceTransformer('finetuned-minilm-l6-v2')
+        embedding_model = OpenAIEmbeddings(model="text-embedding-3-small")
 
         # Create a unique collection name for this podcast
         collection_name = f"podcast_{podcast_id}"
