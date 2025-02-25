@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech & Science Podcast Series</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1a237e, #0d47a1);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .podcast-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .podcast-card:hover {
+            transform: translateY(-5px);
+        }
+        .podcast-title {
+            color: #1a237e;
+            margin-top: 0;
+        }
+        .podcast-meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .podcast-content {
+            color: #333;
+        }
+        .tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1a237e;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .play-button {
+            background: #1a237e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease;
+        }
+        .play-button:hover {
+            background: #0d47a1;
+        }
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #1a237e;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Tech & Science Podcast Series</h1>
+        <p>Exploring the frontiers of technology, science, and innovation</p>
+    </div>
+
+    <input type="text" class="search-bar" placeholder="Search episodes...">
+
+    <div class="podcast-grid">
+        <div class="podcast-card">
+            <h2 class="podcast-title">AI Developments in 2024</h2>
+            <div class="podcast-meta">
+                <span>Episode 1</span> • <span>45 min</span>
+                <div class="tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Technology</span>
+                    <span class="tag">Innovation</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Explore the latest breakthroughs in AI, from Claude 3's improved reasoning to Google's Gemini series. Learn about advances in model efficiency, ethical AI development, and healthcare applications.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+
+        <div class="podcast-card">
+            <h2 class="podcast-title">Quantum Computing & Cryptography</h2>
+            <div class="podcast-meta">
+                <span>Episode 2</span> • <span>40 min</span>
+                <div class="tags">
+                    <span class="tag">Quantum</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">Technology</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Dive into the world of quantum computing and its impact on cryptography. Understand post-quantum cryptography, quantum key distribution, and the future of data security.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+
+        <div class="podcast-card">
+            <h2 class="podcast-title">Environmental Impact of Fast Fashion</h2>
+            <div class="podcast-meta">
+                <span>Episode 3</span> • <span>35 min</span>
+                <div class="tags">
+                    <span class="tag">Environment</span>
+                    <span class="tag">Fashion</span>
+                    <span class="tag">Sustainability</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Examine the environmental consequences of fast fashion and explore sustainable alternatives. Learn about resource depletion, pollution, and innovative solutions for a greener fashion industry.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+
+        <div class="podcast-card">
+            <h2 class="podcast-title">AI Impact on Job Markets</h2>
+            <div class="podcast-meta">
+                <span>Episode 4</span> • <span>42 min</span>
+                <div class="tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Jobs</span>
+                    <span class="tag">Future Skills</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Analyze how artificial intelligence is reshaping job markets and what skills will be crucial in the future. Discover opportunities, challenges, and strategies for career development.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+
+        <div class="podcast-card">
+            <h2 class="podcast-title">Social Media & Mental Health</h2>
+            <div class="podcast-meta">
+                <span>Episode 5</span> • <span>38 min</span>
+                <div class="tags">
+                    <span class="tag">Mental Health</span>
+                    <span class="tag">Social Media</span>
+                    <span class="tag">Psychology</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Investigate the psychological effects of social media on mental health. Understand the impact on well-being, addiction patterns, and strategies for healthy digital habits.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+
+        <div class="podcast-card">
+            <h2 class="podcast-title">Blockchain Beyond Cryptocurrency</h2>
+            <div class="podcast-meta">
+                <span>Episode 6</span> • <span>44 min</span>
+                <div class="tags">
+                    <span class="tag">Blockchain</span>
+                    <span class="tag">Technology</span>
+                    <span class="tag">Innovation</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Explore blockchain applications beyond cryptocurrency. Learn about smart contracts, supply chain management, healthcare records, and the future of decentralized systems.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+
+        <div class="podcast-card">
+            <h2 class="podcast-title">Renewable Energy Breakthroughs</h2>
+            <div class="podcast-meta">
+                <span>Episode 7</span> • <span>41 min</span>
+                <div class="tags">
+                    <span class="tag">Energy</span>
+                    <span class="tag">Sustainability</span>
+                    <span class="tag">Technology</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Discover the latest breakthroughs in renewable energy technology. Learn about innovations in solar, wind, and storage solutions shaping our sustainable future.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+
+        <div class="podcast-card">
+            <h2 class="podcast-title">Space Exploration Benefits</h2>
+            <div class="podcast-meta">
+                <span>Episode 8</span> • <span>39 min</span>
+                <div class="tags">
+                    <span class="tag">Space</span>
+                    <span class="tag">Science</span>
+                    <span class="tag">Technology</span>
+                </div>
+            </div>
+            <div class="podcast-content">
+                <p>Explore how space exploration benefits everyday life on Earth. From technological innovations to scientific discoveries, understand the impact of space research.</p>
+            </div>
+            <button class="play-button">▶ Play Episode</button>
+        </div>
+    </div>
+
+    <script>
+        // Simple search functionality
+        const searchBar = document.querySelector('.search-bar');
+        const podcastCards = document.querySelectorAll('.podcast-card');
+
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            podcastCards.forEach(card => {
+                const title = card.querySelector('.podcast-title').textContent.toLowerCase();
+                const content = card.querySelector('.podcast-content').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const isVisible = 
+                    title.includes(searchTerm) || 
+                    content.includes(searchTerm) || 
+                    tags.some(tag => tag.includes(searchTerm));
+                
+                card.style.display = isVisible ? 'block' : 'none';
+            });
+        });
+
+        // Add click handlers for play buttons
+        document.querySelectorAll('.play-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const title = button.parentElement.querySelector('.podcast-title').textContent;
+                alert(`Playing: ${title}`);
+            });
+        });
+    </script>
+</body>
+</html> 
