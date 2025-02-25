@@ -2,7 +2,7 @@
 
 ## Task 0: Introduction
 
-PodCraft represents a content creation through AI-driven debate synthesis. This project showcases the power of combining multiple AI agents in a structured workflow to generate engaging, balanced, and thought-provoking podcast content.
+PodCraft represents a groundbreaking midterm submission that revolutionizes podcast content creation through AI-driven debate synthesis. This project showcases the power of combining multiple AI agents in a structured workflow to generate engaging, balanced, and thought-provoking podcast content.
 
 ## Task 1: Problem Definition and Audience
 
@@ -131,14 +131,14 @@ Link: https://huggingface.co/dataera2013/midterm-small-model-3
 
 # Task 7: Assessing Performance
 
-| Metric                | Base Model | Fine-tuned Model |
-| --------------------- | ---------- | ---------------- |
-| Context Recall        | 0.7302     | 0.7778           |
-| Faithfulness          | 0.8521     | 0.8532           |
-| Factual Correctness   | 0.5267     | 0.5658           |
-| Answer Relevancy      | 0.7904     | 0.7909           |
-| Context Entity Recall | 0.2991     | 0.3107           |
-| Noise Sensitivity     | 0.2556     | 0.2628           |
+| Metric                | Score  |
+| --------------------- | ------ |
+| Context Recall        | 0.7778 |
+| Faithfulness          | 0.8532 |
+| Factual Correctness   | 0.5658 |
+| Answer Relevancy      | 0.7909 |
+| Context Entity Recall | 0.3107 |
+| Noise Sensitivity     | 0.2628 |
 
 **Key Improvements:**
 
