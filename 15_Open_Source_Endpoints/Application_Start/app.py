@@ -42,15 +42,19 @@ HF_TOKEN = os.environ["HF_TOKEN"]
 """
 ### 1. CREATE TEXT LOADER AND LOAD DOCUMENTS
 ### NOTE: PAY ATTENTION TO THE PATH THEY ARE IN. 
-text_loader = 
-documents = 
+text_loader = TextLoader("data/paul_graham_essays.txt")
+documents = text_loader.load()
 
 ### 2. CREATE TEXT SPLITTER AND SPLIT DOCUMENTS
-text_splitter = 
-split_documents = 
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+split_documents = text_splitter.split_documents(documents)
 
 ### 3. LOAD HUGGINGFACE EMBEDDINGS
-hf_embeddings = 
+hf_embeddings = HuggingFaceEndpointEmbeddings(
+    model=HF_EMBED_ENDPOINT,
+    task="feature-extraction",
+    huggingfacehub_api_token=os.environ["HF_TOKEN"],
+)
 
 async def add_documents_async(vectorstore, documents):
     await vectorstore.aadd_documents(documents)
@@ -110,17 +114,39 @@ hf_retriever = asyncio.run(run())
 2. Create a Prompt Template from the String Template
 """
 ### 1. DEFINE STRING TEMPLATE
-RAG_PROMPT_TEMPLATE = 
+RAG_PROMPT_TEMPLATE = """\
+<|start_header_id|>system<|end_header_id|>
+You are a helpful assistant. You answer user questions based on provided context. If you can't answer the question with the provided context, say you don't know.<|eot_id|>
+
+<|start_header_id|>user<|end_header_id|>
+User Query:
+{query}
+
+Context:
+{context}<|eot_id|>
+
+<|start_header_id|>assistant<|end_header_id|>
+"""
 
 ### 2. CREATE PROMPT TEMPLATE
-rag_prompt =
+rag_prompt = PromptTemplate.from_template(RAG_PROMPT_TEMPLATE)
 
 # -- GENERATION -- #
 """
 1. Create a HuggingFaceEndpoint for the LLM
 """
 ### 1. CREATE HUGGINGFACE ENDPOINT FOR LLM
-hf_llm = 
+hf_llm = HuggingFaceEndpoint(
+    endpoint_url=HF_LLM_ENDPOINT,
+    huggingfacehub_api_token=os.environ["HF_TOKEN"],
+    task="text-generation",
+    model_kwargs={
+        "max_new_tokens": 512,
+        "temperature": 0.7,
+        "top_p": 0.95,
+        "return_full_text": False
+    }
+)
 
 @cl.author_rename
 def rename(original_author: str):
@@ -138,14 +164,18 @@ def rename(original_author: str):
 async def start_chat():
     """
     This function will be called at the start of every user session. 
-
     We will build our LCEL RAG chain here, and store it in the user session. 
-
-    The user session is a dictionary that is unique to each user session, and is stored in the memory of the server.
     """
-
     ### BUILD LCEL RAG CHAIN THAT ONLY RETURNS TEXT
-    lcel_rag_chain = 
+    lcel_rag_chain = (
+        {
+            "context": itemgetter("query") | hf_retriever, 
+            "query": itemgetter("query")
+        }
+        | rag_prompt 
+        | hf_llm 
+        | StrOutputParser()
+    )
 
     cl.user_session.set("lcel_rag_chain", lcel_rag_chain)
 
